@@ -1,10 +1,10 @@
-package u02
+package u02.tasks
 
 import org.junit.jupiter.api.Assertions.{assertFalse, assertTrue}
 import org.junit.jupiter.api.Test
-import u02.TaskFunctions.{negFun, negGeneric, negMethod}
+import u02.tasks.Es2.{negFun, negMethod}
 
-class NegTest {
+class Es2Test {
 
   val empty: String => Boolean = _ == "" // predicate on strings
 
@@ -16,19 +16,6 @@ class NegTest {
   @Test def testNegMethod(): Unit = {
     val notStringEmpty = negMethod(empty)
     assertStringEmpty(notStringEmpty) // true
-  }
-
-  @Test def testGenericString(): Unit = {
-    val notStringEmpty = negGeneric[String](empty)
-    assertStringEmpty(notStringEmpty) // true
-  }
-
-  @Test def testGenericInt(): Unit = {
-    val positive: Int => Boolean = _ >= 0 // predicate on strings
-    val negative = negGeneric[Int](positive)
-    assertTrue(negative(-1)) // true
-    assertFalse(negative(1)) // false
-    assertTrue(negative(-1) && !negative(1)) // true.. a comprehensive test
   }
 
   private def assertStringEmpty(notStringEmpty: String => Boolean): Unit = {

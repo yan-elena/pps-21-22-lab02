@@ -1,6 +1,6 @@
 package u02.tasks
 
-object Es7 extends App:
+object Es7:
 
   enum Shape:
     case Rectangle(length: Double, width: Double)
