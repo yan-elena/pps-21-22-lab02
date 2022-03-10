@@ -4,15 +4,14 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import u02.tasks.Es1.{parityFun, parityMethod}
 
-class Es1Test {
+class Es1Test:
 
-  @Test def testParityFun(): Unit = {
-    assertEquals("even", parityFun(2))
-    assertEquals("odd", parityFun(3))
-  }
+  @Test def testParityFun(): Unit =
+    testParity(parityFun)
 
-  @Test def testParityMethod(): Unit = {
-    assertEquals("even", parityMethod(2))
-    assertEquals("odd", parityMethod(3))
-  }
-}
+  @Test def testParityMethod(): Unit =
+    testParity(parityMethod)
+
+  private def testParity(f: Int => String): Unit =
+    assertEquals("even", f(2))
+    assertEquals("odd", f(3))
