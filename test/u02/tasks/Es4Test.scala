@@ -8,12 +8,12 @@ class Es4Test:
 
   @Test def testCurryingTrue(): Unit =
     assertTrue(p1(1)(2)(3))
-    assertTrue(p2(1,2,3))
+    assertTrue(p2(1, 2, 3))
     assertTrue(p3(1)(2)(3))
-    assertTrue(p4(1,2,3))
+    assertTrue(p4(1, 2, 3))
 
   @Test def testCurryingFalse(): Unit =
     assertFalse(p1(3)(2)(3))
-    assertFalse(p2(3,2,3))
+    assertFalse(p2(3, 2, 3))
     assertFalse(p3(3)(2)(3))
-    assertFalse(p4(3,2,3))
+    assertFalse(p4(3, 2, 3))
