@@ -9,10 +9,9 @@ object BTrees extends App:
 
   object Tree:
 
-    def function[A, B](t: Tree[A])(b: (Tree[A], Tree[A]) => B)(l: A => B): B = t match {
+    def function[A, B](t: Tree[A])(b: (Tree[A], Tree[A]) => B)(l: A => B): B = t match
       case Branch(l, r) => b(l, r)
       case Leaf(e) => l(e)
-    }
 
     def size[A](t: Tree[A]): Int = function[A, Int](t)(size(_) + size(_))(_ => 1)
 
