@@ -8,18 +8,17 @@ object BTrees extends App:
     case Branch(left: Tree[A], right: Tree[A])
 
   object Tree:
-    def size[A](t: Tree[A]): Int = t match
-      case Branch(l, r) => size(l) + size(r)
-      case _ => 1
 
-    def find[A](t: Tree[A], elem: A): Boolean = t match
-      case Branch(l, r) => find(l, elem) || find(r, elem)
-      case Leaf(e) => e == elem
+    def function[A, B](t: Tree[A])(b: (Tree[A], Tree[A]) => B)(l: A => B): B = t match {
+      case Branch(l, r) => b(l, r)
+      case Leaf(e) => l(e)
+    }
 
-    def count[A](t: Tree[A], elem: A): Int = t match
-      case Branch(l, r) => count(l, elem) + count(r, elem)
-      case Leaf(e) if e == elem => 1
-      case _ => 0
+    def size[A](t: Tree[A]): Int = function[A, Int](t)(size(_) + size(_))(_ => 1)
+
+    def find[A](t: Tree[A], elem: A): Boolean = function[A, Boolean](t)(find(_, elem) || find(_, elem))(_ == elem)
+
+    def count[A](t: Tree[A], elem: A): Int = function[A, Int](t)(count(_, elem) + count(_, elem))(e => if (e == elem) 1 else 0)
 
   import Tree.*
   val tree = Branch(Branch(Leaf(1), Leaf(2)), Leaf(1))
